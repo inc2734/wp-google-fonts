@@ -19,7 +19,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=Noto+Sans+JP&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -35,7 +35,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=Noto+Serif+JP&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -51,7 +51,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=M+PLUS+1p&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -67,7 +67,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -83,7 +83,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -99,7 +99,7 @@ class Helper {
 
 		wp_enqueue_style(
 			'wp-google-fonts',
-			'https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&wght@' . $weight . '&display=swap',
+			'https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@' . $weight . '&display=swap',
 			[],
 			1
 		);
@@ -111,7 +111,7 @@ class Helper {
 	 * @return string
 	 */
 	protected static function _font_weight() {
-		$weight = '400,700';
+		$weight = '400;700';
 		return apply_filters( 'inc2734_wp_google_fonts_font_weight', $weight );
 	}
 }
