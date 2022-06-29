@@ -188,7 +188,11 @@ class Helper {
 			return false;
 		}
 
-		$base_dir      = apply_filters( 'inc2734_wp_google_fonts_base_directory', WP_CONTENT_DIR );
+		$base_dir = apply_filters( 'inc2734_wp_google_fonts_base_directory', WP_CONTENT_DIR );
+		if ( is_writable( $base_dir ) ) {
+			return false;
+		}
+
 		$base_dir      = path_join( $base_dir, 'inc2734-wp-google-fonts' );
 		$css_filename  = sanitize_file_name( $args['slug'] . '.css' );
 		$css_full_path = path_join( $base_dir, $css_filename );
