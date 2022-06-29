@@ -235,7 +235,7 @@ class Helper {
 						$base_dir
 					),
 					'/'
-				),
+				)
 			),
 			$data
 		);
