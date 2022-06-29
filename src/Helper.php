@@ -223,16 +223,22 @@ class Helper {
 			return false;
 		}
 
-		$new_data = str_replace(
+		$own_directory = str_replace( home_url(), '', site_url() );
+		$new_data      = str_replace(
 			'https://fonts.gstatic.com/s',
-			str_replace(
-				untrailingslashit( ABSPATH ),
-				'',
-				$base_dir
+			path_join(
+				$own_directory,
+				ltrim(
+					str_replace(
+						untrailingslashit( ABSPATH ),
+						'',
+						$base_dir
+					),
+					'/'
+				),
 			),
 			$data
 		);
-
 		if ( $new_data === $data ) {
 			return false;
 		}
