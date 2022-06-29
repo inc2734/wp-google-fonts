@@ -1,8 +1,10 @@
 # WP Custom CSS to Editor
 
-[![Build Status](https://travis-ci.org/inc2734/wp-google-fonts.svg?branch=master)](https://travis-ci.org/inc2734/wp-google-fonts)
+![CI](https://github.com/inc2734/wp-google-fonts/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-google-fonts/v/stable)](https://packagist.org/packages/inc2734/wp-google-fonts)
 [![License](https://poser.pugx.org/inc2734/wp-google-fonts/license)](https://packagist.org/packages/inc2734/wp-google-fonts)
+
+When a user with `customize` permission enqueues a font, the font is downloaded from the Google Fonts API. It then references the downloaded font.
 
 ## Install
 ```
@@ -35,6 +37,20 @@ add_filter(
   'inc2734_wp_google_fonts_font_weight',
   function( $weight ) {
     return $weight;
+  }
+);
+```
+
+### inc2734_wp_google_fonts_base_directory
+```
+/**
+ * @param string $directory WP_CONTENT_DIR
+ * @return string
+ */
+add_filter(
+  'inc2734_wp_google_fonts_base_directory',
+  function( $directory ) {
+    return $directory;
   }
 );
 ```
