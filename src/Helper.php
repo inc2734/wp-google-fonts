@@ -188,8 +188,10 @@ class Helper {
 			return false;
 		}
 
-		$base_dir = apply_filters( 'inc2734_wp_google_fonts_base_directory', WP_CONTENT_DIR );
-		if ( is_writable( $base_dir ) ) {
+		$wp_upload_dir = wp_upload_dir();
+
+		$base_dir = apply_filters( 'inc2734_wp_google_fonts_base_directory', $wp_upload_dir['basedir'] );
+		if ( ! is_writable( $base_dir ) ) {
 			return false;
 		}
 

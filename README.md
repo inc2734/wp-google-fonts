@@ -5,6 +5,7 @@
 [![License](https://poser.pugx.org/inc2734/wp-google-fonts/license)](https://packagist.org/packages/inc2734/wp-google-fonts)
 
 When a user with `customize` permission enqueues a font, the font is downloaded from the Google Fonts API. It then references the downloaded font.
+Fonts files are stored in `wp-content/uploads/inc2734-wp-google-fonts`.
 
 ## Install
 ```
@@ -54,3 +55,35 @@ add_filter(
   }
 );
 ```
+
+## Third-party resources
+
+### Noto Sans Japanese
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/noto/specimen/Noto+Sans+JP
+
+### Noto Serif Japanese
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/noto/specimen/Noto+Serif+JP
+
+### M PLUS 1p
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/specimen/M+PLUS+1p
+
+### M PLUS Rounded 1c
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/specimen/M+PLUS+Rounded+1c
+
+### BIZ UDPGothic
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/specimen/BIZ+UDPGothic
+
+### BIZ UDPMincho
+* Font License: SIL Open Font License (OFL)
+* Font License URI: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+* Source: https://fonts.google.com/specimen/BIZ+UDPMincho
