@@ -229,20 +229,20 @@ class Helper {
 			return false;
 		}
 
-		$own_directory = str_replace( home_url(), '', site_url() );
+		$own_directory = ltrim( str_replace( home_url(), '', site_url() ), '/' );
+		preg_match( '|^https?://[^/]+?(/.*)$|', home_url(), $match );
+		$sub_directory = ltrim( $match[1], '/' );
+		$abspath       = str_replace(
+			untrailingslashit( ABSPATH ),
+			'',
+			$base_dir
+		);
+		$abspath       = path_join( $own_directory, ltrim( $abspath, '/' ) );
+		$abspath       = path_join( $sub_directory, ltrim( $abspath, '/' ) );
+		$abspath       = path_join( '/', $abspath );
 		$new_data      = str_replace(
 			'https://fonts.gstatic.com/s',
-			path_join(
-				$own_directory,
-				ltrim(
-					str_replace(
-						untrailingslashit( ABSPATH ),
-						'',
-						$base_dir
-					),
-					'/'
-				)
-			),
+			$abspath,
 			$data
 		);
 		if ( $new_data === $data ) {
