@@ -200,12 +200,15 @@ class Helper {
 		$css_full_path = path_join( $base_dir, $css_filename );
 		$css_url       = str_replace( trailingslashit( ABSPATH ), trailingslashit( site_url() ), $css_full_path );
 
-		if ( file_exists( $css_full_path ) ) {
-			return $css_url;
-		}
-
 		if ( ! current_user_can( 'customize' ) ) {
 			return false;
+		}
+
+		if ( file_exists( $css_full_path ) ) {
+			$refresh_font = apply_filters( 'inc2734_wp_google_fonts_refresh_font', false, $css_full_path );
+			if ( ! $refresh_font ) {
+				return $css_url;
+			}
 		}
 
 		$user_agent = ! empty( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : false;
@@ -231,7 +234,7 @@ class Helper {
 
 		$own_directory = ltrim( str_replace( home_url(), '', site_url() ), '/' );
 		preg_match( '|^https?://[^/]+?(/.*)$|', home_url(), $match );
-		$sub_directory = ltrim( $match[1], '/' );
+		$sub_directory = $match ? ltrim( $match[1], '/' ) : '';
 		$abspath       = str_replace(
 			untrailingslashit( ABSPATH ),
 			'',

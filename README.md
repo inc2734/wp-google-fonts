@@ -56,6 +56,23 @@ add_filter(
 );
 ```
 
+### inc2734_wp_google_fonts_refresh_font
+```
+/**
+ * @param boolean $refresh true if you want to force a font file refresh.
+ * @param string  $css_full_path Full path of CSS file.
+ * @return boolean
+ */
+add_filter(
+  'inc2734_wp_google_fonts_refresh_font',
+  function( $refresh, $css_full_path ) {
+    return $refresh;
+  },
+  10,
+  2
+);
+```
+
 ## Third-party resources
 
 ### Noto Sans Japanese
