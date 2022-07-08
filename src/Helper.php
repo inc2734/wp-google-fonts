@@ -170,6 +170,33 @@ class Helper {
 	}
 
 	/**
+	 * Returns the path to the CSS file for the font.
+	 *
+	 * @param string $slug Font slug.
+	 * @return string
+	 */
+	protected static function _get_font_css_path( $slug ) {
+		$wp_upload_dir = wp_upload_dir();
+		$base_dir      = apply_filters( 'inc2734_wp_google_fonts_base_directory', $wp_upload_dir['basedir'] );
+		$base_dir      = path_join( $base_dir, 'inc2734-wp-google-fonts' );
+		$css_filename  = sanitize_file_name( $slug . '.css' );
+		$css_full_path = path_join( $base_dir, $css_filename );
+		return $css_full_path;
+	}
+
+	/**
+	 * Returns the URL to the CSS file for the font.
+	 *
+	 * @param string $slug Font slug.
+	 * @return string
+	 */
+	protected static function _get_font_css_url( $slug ) {
+		$css_full_path = static::_get_font_css_path( $slug );
+		$css_url       = str_replace( trailingslashit( ABSPATH ), trailingslashit( site_url() ), $css_full_path );
+		return $css_url;
+	}
+
+	/**
 	 * Download fron Google Fonts API.
 	 *
 	 * @param array $args Array.
@@ -188,27 +215,31 @@ class Helper {
 			return false;
 		}
 
-		$wp_upload_dir = wp_upload_dir();
-
-		$base_dir = apply_filters( 'inc2734_wp_google_fonts_base_directory', $wp_upload_dir['basedir'] );
-		if ( ! is_writable( $base_dir ) ) {
-			return false;
-		}
-
-		$base_dir      = path_join( $base_dir, 'inc2734-wp-google-fonts' );
-		$css_filename  = sanitize_file_name( $args['slug'] . '.css' );
-		$css_full_path = path_join( $base_dir, $css_filename );
-		$css_url       = str_replace( trailingslashit( ABSPATH ), trailingslashit( site_url() ), $css_full_path );
-
-		if ( ! current_user_can( 'customize' ) ) {
-			return false;
-		}
+		$css_full_path = static::_get_font_css_path( $args['slug'] );
+		$css_url       = static::_get_font_css_url( $args['slug'] );
 
 		if ( file_exists( $css_full_path ) ) {
 			$refresh_font = apply_filters( 'inc2734_wp_google_fonts_refresh_font', false, $css_full_path );
 			if ( ! $refresh_font ) {
 				return $css_url;
 			}
+		}
+
+		if ( ! current_user_can( 'customize' ) ) {
+			return false;
+		}
+
+		$base_dir = dirname( $css_full_path );
+		if ( ! file_exists( $base_dir ) ) {
+			$parent_dir = dirname( $base_dir );
+			if ( ! is_writable( $parent_dir ) ) {
+				return false;
+			}
+		}
+
+		$is_created = Filesystem::mkdir( $base_dir );
+		if ( ! $is_created ) {
+			return false;
 		}
 
 		$user_agent = ! empty( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : false;
@@ -224,11 +255,6 @@ class Helper {
 
 		$data = $requester->get( $args['request_uri'] );
 		if ( ! $data ) {
-			return false;
-		}
-
-		$is_created = Filesystem::mkdir( $base_dir );
-		if ( ! $is_created ) {
 			return false;
 		}
 
