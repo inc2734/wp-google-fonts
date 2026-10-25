@@ -1,0 +1,11 @@
+{
+	"core": null,
+	"port": 8889,
+	"mappings": {
+		"wp-content/plugins/wp-google-fonts": "./"
+	},
+	"config": {
+		"WP_DEBUG": true
+	},
+	"testsEnvironment": false
+}
